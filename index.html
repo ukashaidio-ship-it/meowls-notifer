@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meowl Panel</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #0f0f0f;
+  color: white;
+  display: flex;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 220px;
+  height: 100vh;
+  background: #141414;
+  padding: 20px;
+  border-right: 1px solid #222;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 30px;
+}
+
+.nav a {
+  display: block;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  color: #aaa;
+  text-decoration: none;
+}
+
+.nav a:hover {
+  background: #1f1f1f;
+  color: white;
+}
+
+/* MAIN */
+.main {
+  flex: 1;
+  padding: 30px;
+}
+
+/* TOP BAR */
+.topbar {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+
+/* CARDS */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: rgba(255,255,255,0.05);
+  padding: 20px;
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+.card h3 {
+  font-size: 14px;
+  color: #aaa;
+}
+
+.card p {
+  font-size: 24px;
+  margin-top: 10px;
+}
+
+/* BUY BOX */
+.buy {
+  margin-top: 30px;
+}
+
+.ltc {
+  background: #111;
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 13px;
+  word-break: break-all;
+  margin: 10px 0;
+}
+
+button {
+  background: white;
+  color: black;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+</style>
+
+</head>
+<body>
+
+<div class="sidebar">
+  <div class="logo">🐱 MEOWL</div>
+
+  <div class="nav">
+    <a href="#">Dashboard</a>
+    <a href="#">Logs</a>
+    <a href="#">Stats</a>
+    <a href="#">Buy</a>
+  </div>
+</div>
+
+<div class="main">
+
+  <div class="topbar">Dashboard</div>
+
+  <div class="grid">
+    <div class="card">
+      <h3>Total Hits</h3>
+      <p>1,284</p>
+    </div>
+
+    <div class="card">
+      <h3>Active Users</h3>
+      <p>37</p>
+    </div>
+
+    <div class="card">
+      <h3>Speed</h3>
+      <p>Fast ⚡</p>
+    </div>
+  </div>
+
+  <div class="card buy">
+    <h3>Buy Access</h3>
+    <p>$5 / day</p>
+
+    <div class="ltc" id="ltc">
+      LQaLnig2KfEmkNeFSvnH3tq9sJKPKNEHp2
+    </div>
+
+    <button onclick="copyLTC()">Copy LTC</button>
+  </div>
+
+</div>
+
+<script>
+function copyLTC() {
+  const text = document.getElementById("ltc").innerText;
+  navigator.clipboard.writeText(text);
+  alert("Copied");
+}
+</script>
+
+</body>
+</html>
