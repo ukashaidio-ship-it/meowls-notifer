@@ -3,17 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Meowl Notifier - Dashboard</title>
+  <title>Meowl Notifier</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
   <style>
-    body {
-      font-family: 'Inter', system-ui, sans-serif;
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    .pixel-owl { 
+      image-rendering: pixelated; 
+      width: 42px; 
+      height: 42px; 
     }
-    .pixel-owl {
-      image-rendering: pixelated;
-      width: 42px;
-      height: 42px;
+    .nav-link { transition: all 0.2s; }
+    .nav-link.active { 
+      background-color: #27272a; 
+      color: #facc15; 
+      border-left: 4px solid #facc15; 
     }
   </style>
 </head>
@@ -24,30 +28,21 @@
     <!-- Sidebar -->
     <div class="w-64 bg-zinc-900 border-r border-zinc-800 flex flex-col">
       <div class="p-6 flex items-center gap-3 border-b border-zinc-800">
-        <img src="https://i.imgur.com/YourOwlImageLinkHere.png" alt="Meowl" class="pixel-owl"> 
-        <!-- Replace the URL above with your pixel owl image link -->
+        <!-- Your pixel owl here -->
+        <img src="https://files.catbox.moe/0v5r2j.png" alt="Meowl" class="pixel-owl"> 
         <span class="text-2xl font-bold text-yellow-400">Meowl Notifier</span>
       </div>
 
       <nav class="flex-1 p-4">
-        <ul class="space-y-1">
-          <li>
-            <a href="#" class="flex items-center gap-3 px-4 py-3 bg-zinc-800 text-yellow-400 rounded-xl font-medium">
-              <i class="fas fa-th-large"></i>
-              <span>Dashboard</span>
-            </a>
-          </li>
-          <li><a href="#" class="flex items-center gap-3 px-4 py-3 hover:bg-zinc-800 rounded-xl text-zinc-400 hover:text-zinc-200"><i class="fas fa-clock"></i> Active Slots</a></li>
-          <li><a href="#" class="flex items-center gap-3 px-4 py-3 hover:bg-zinc-800 rounded-xl text-zinc-400 hover:text-zinc-200"><i class="fas fa-cart-shopping"></i> Purchase</a></li>
-          <li><a href="#" class="flex items-center gap-3 px-4 py-3 hover:bg-zinc-800 rounded-xl text-zinc-400 hover:text-zinc-200"><i class="fas fa-plus"></i> Top Up</a></li>
-          <li><a href="#" class="flex items-center gap-3 px-4 py-3 hover:bg-zinc-800 rounded-xl text-zinc-400 hover:text-zinc-200"><i class="fas fa-exchange-alt"></i> Transfer</a></li>
-          <li><a href="#" class="flex items-center gap-3 px-4 py-3 hover:bg-zinc-800 rounded-xl text-zinc-400 hover:text-zinc-200"><i class="fas fa-user"></i> Customer Panel</a></li>
+        <ul class="space-y-1" id="sidebar">
+          <li><a href="#" data-page="dashboard" class="nav-link active flex items-center gap-3 px-4 py-3 rounded-xl"><i class="fas fa-th-large"></i> Dashboard</a></li>
+          <li><a href="#" data-page="slots" class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl"><i class="fas fa-clock"></i> Active Slots</a></li>
+          <li><a href="#" data-page="purchase" class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl"><i class="fas fa-cart-shopping"></i> Purchase</a></li>
         </ul>
       </nav>
 
-      <!-- Bottom user info -->
       <div class="p-4 border-t border-zinc-800 flex items-center gap-3">
-        <img src="https://i.imgur.com/YourOwlImageLinkHere.png" alt="Meowl" class="w-8 h-8 pixel-owl">
+        <img src="https://files.catbox.moe/0v5r2j.png" alt="Meowl" class="w-8 h-8 pixel-owl">
         <div>
           <p class="font-medium">kashizumi</p>
           <p class="text-emerald-400 text-sm">$0.00</p>
@@ -56,40 +51,22 @@
     </div>
 
     <!-- Main Content -->
-    <div class="flex-1 overflow-auto">
-      <!-- Top Bar -->
-      <div class="bg-zinc-900 border-b border-zinc-800 px-8 py-4 flex items-center justify-between">
-        <div class="flex items-center gap-3">
-          <i class="fas fa-house text-xl"></i>
-          <span class="text-xl font-semibold">Dashboard</span>
-        </div>
-        <div class="flex items-center gap-6">
-          <div class="relative">
-            <i class="fas fa-bell text-2xl cursor-pointer"></i>
-            <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">1</span>
-          </div>
-          <div class="text-sm">
-            <span class="text-yellow-400">★</span> Member since Apr 14, 2026
-          </div>
-        </div>
-      </div>
+    <div class="flex-1 overflow-auto" id="main-content">
 
-      <div class="p-8">
-        <!-- Welcome -->
+      <!-- Dashboard -->
+      <div id="page-dashboard" class="p-8">
         <div class="bg-gradient-to-r from-yellow-900/30 to-zinc-900 border border-yellow-600/30 rounded-3xl p-8 mb-8 flex items-center justify-between">
-          <div>
-            <div class="flex items-center gap-4">
-              <span class="text-5xl">👋</span>
-              <div>
-                <h1 class="text-4xl font-bold">Welcome back, <span class="text-yellow-400">kashizumi</span>.</h1>
-                <p class="text-zinc-400 mt-2">Here's what's happening with your account today</p>
-              </div>
+          <div class="flex items-center gap-4">
+            <span class="text-5xl">👋</span>
+            <div>
+              <h1 class="text-4xl font-bold">Welcome back, <span class="text-yellow-400">kashizumi</span>.</h1>
+              <p class="text-zinc-400 mt-2">Here's what's happening with your account today</p>
             </div>
           </div>
+          <div class="text-sm text-yellow-400">★ Member since Apr 14, 2026</div>
         </div>
 
-        <!-- Stats -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div class="bg-zinc-900 border border-zinc-700 rounded-3xl p-6">
             <div class="flex items-center gap-4">
               <div class="w-12 h-12 bg-emerald-500/10 rounded-2xl flex items-center justify-center text-3xl">💰</div>
@@ -108,67 +85,99 @@
               </div>
             </div>
           </div>
-          <div class="bg-zinc-900 border border-zinc-700 rounded-3xl p-6">
-            <div class="flex items-center gap-4">
-              <div class="w-12 h-12 bg-blue-500/10 rounded-2xl flex items-center justify-center text-3xl">💳</div>
-              <div>
-                <p class="text-4xl font-bold text-emerald-400">$0.00</p>
-                <p class="text-zinc-400">Total Deposited</p>
-              </div>
-            </div>
-          </div>
         </div>
+      </div>
 
-        <!-- Settings -->
-        <div class="bg-zinc-900 border border-zinc-700 rounded-3xl p-8 mb-8">
-          <h2 class="flex items-center gap-3 text-xl font-semibold mb-6">
-            <i class="fas fa-cog"></i> Settings
-          </h2>
-          <div class="space-y-6">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-4">
-                <i class="fas fa-bell text-2xl text-yellow-400"></i>
-                <div>
-                  <p class="font-medium">Discord Notifications</p>
-                  <p class="text-sm text-zinc-400">Receive slot expiry alerts in Discord DM</p>
-                </div>
-              </div>
-              <label class="relative inline-flex items-center cursor-pointer">
-                <input type="checkbox" class="sr-only peer">
-                <div class="w-12 h-6 bg-zinc-700 peer-focus:outline-none rounded-full peer peer-checked:bg-yellow-400"></div>
-                <div class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition peer-checked:translate-x-6"></div>
-              </label>
-            </div>
-
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-4">
-                <i class="fas fa-lock text-2xl text-yellow-400"></i>
-                <div>
-                  <p class="font-medium">Two-Factor Authentication (TOTP)</p>
-                  <p class="text-sm text-zinc-400">Adds an extra layer of security to protect your account</p>
-                </div>
-              </div>
-              <label class="relative inline-flex items-center cursor-pointer">
-                <input type="checkbox" class="sr-only peer">
-                <div class="w-12 h-6 bg-zinc-700 peer-focus:outline-none rounded-full peer peer-checked:bg-yellow-400"></div>
-                <div class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition peer-checked:translate-x-6"></div>
-              </label>
-            </div>
-          </div>
-        </div>
-
-        <!-- Recent Deposits -->
-        <div class="bg-zinc-900 border border-zinc-700 rounded-3xl p-8">
-          <h2 class="flex items-center gap-3 text-xl font-semibold mb-6">
-            <i class="fas fa-history"></i> Recent Deposits
-          </h2>
-          <div class="text-center py-16 text-zinc-500">
-            No deposits yet
+      <!-- Active Slots -->
+      <div id="page-slots" class="p-8 hidden">
+        <h1 class="text-3xl font-bold mb-6">Active Slots</h1>
+        <div id="slots-list" class="space-y-4">
+          <div class="text-center py-20 text-zinc-500">
+            No active slots yet. Buy one from Purchase page.
           </div>
         </div>
       </div>
+
+      <!-- Purchase -->
+      <div id="page-purchase" class="p-8 hidden">
+        <h1 class="text-3xl font-bold mb-8">Purchase Slots</h1>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-zinc-900 border border-zinc-700 rounded-3xl p-8 hover:border-yellow-400 transition">
+            <h3 class="text-2xl font-bold mb-2">Basic Slot</h3>
+            <p class="text-4xl font-bold text-yellow-400 mb-1">$5</p>
+            <p class="text-zinc-400 mb-6">24 Hours Access</p>
+            <button onclick="buySlot(1)" 
+                    class="w-full bg-yellow-400 hover:bg-yellow-300 text-black font-bold py-4 rounded-2xl transition">
+              Buy Now - $5
+            </button>
+          </div>
+
+          <div class="bg-zinc-900 border border-zinc-700 rounded-3xl p-8 hover:border-yellow-400 transition">
+            <h3 class="text-2xl font-bold mb-2">Premium Slot</h3>
+            <p class="text-4xl font-bold text-yellow-400 mb-1">$12</p>
+            <p class="text-zinc-400 mb-6">72 Hours Access</p>
+            <button onclick="buySlot(2)" 
+                    class="w-full bg-yellow-400 hover:bg-yellow-300 text-black font-bold py-4 rounded-2xl transition">
+              Buy Now - $12
+            </button>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 
+  <script>
+    // Navigation between pages
+    document.querySelectorAll('#sidebar a').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+        this.classList.add('active');
+
+        document.querySelectorAll('#main-content > div').forEach(page => page.classList.add('hidden'));
+        const pageId = 'page-' + this.getAttribute('data-page');
+        document.getElementById(pageId).classList.remove('hidden');
+      });
+    });
+
+    // Auto add slot when bought
+    let slotCount = 0;
+
+    function buySlot(type) {
+      slotCount++;
+      const hours = type === 1 ? 24 : 72;
+      const price = type === 1 ? 5 : 12;
+      
+      const expiry = new Date();
+      expiry.setHours(expiry.getHours() + hours);
+
+      const slotHTML = `
+        <div class="bg-zinc-900 border border-emerald-500/30 rounded-3xl p-6 flex justify-between items-center">
+          <div>
+            <p class="font-bold text-lg">${type === 1 ? 'Basic' : 'Premium'} Slot #${slotCount}</p>
+            <p class="text-emerald-400">${hours} Hours Access</p>
+            <p class="text-xs text-zinc-500 mt-1">Expires: ${expiry.toLocaleString()}</p>
+          </div>
+          <span class="px-4 py-2 bg-emerald-500/10 text-emerald-400 rounded-2xl text-sm font-medium">Active</span>
+        </div>
+      `;
+
+      const list = document.getElementById('slots-list');
+      if (list.children[0] && list.children[0].classList.contains('text-center')) {
+        list.innerHTML = '';
+      }
+      list.innerHTML += slotHTML;
+
+      // Auto switch to Active Slots page
+      document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+      document.querySelector('[data-page="slots"]').classList.add('active');
+      document.querySelectorAll('#main-content > div').forEach(p => p.classList.add('hidden'));
+      document.getElementById('page-slots').classList.remove('hidden');
+
+      alert(`✅ ${type === 1 ? 'Basic' : 'Premium'} Slot purchased! It has been added to Active Slots.`);
+    }
+  </script>
 </body>
 </html>
